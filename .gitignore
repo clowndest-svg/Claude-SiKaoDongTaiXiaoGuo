@@ -1,0 +1,14 @@
+/runtime/
+/backups/
+/verification/
+/verification-*/
+*.exe
+*.dll
+*.pdb
+*.zip
+*.log
+*.tmp
+.vs/
+.vscode/
+Thumbs.db
+Desktop.ini
