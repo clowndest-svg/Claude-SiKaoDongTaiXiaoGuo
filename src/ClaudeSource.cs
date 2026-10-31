@@ -20,7 +20,7 @@ public sealed class ClaudeSource {
 }
 public sealed class ClaudeHost {
  [DllImport("user32.dll")]static extern bool IsIconic(IntPtr h);[DllImport("user32.dll")]static extern bool IsWindowVisible(IntPtr h);
- public string Identity="";public bool Visible;public DateTime StartedUtc;
- public static ClaudeHost Scan(){var h=new ClaudeHost();try{foreach(var p in Process.GetProcessesByName("claude")){using(p){try{if(p.MainWindowHandle==IntPtr.Zero||p.MainModule.FileName.IndexOf("WindowsApps\\Claude_",StringComparison.OrdinalIgnoreCase)<0)continue;h.Identity=p.Id+"/"+p.MainModule.FileName;h.StartedUtc=p.StartTime.ToUniversalTime();h.Visible=IsWindowVisible(p.MainWindowHandle)&&!IsIconic(p.MainWindowHandle);return h;}catch{}}}}catch{}return h;}
+ public IntPtr Handle;public string Identity="";public bool Visible;public DateTime StartedUtc;
+ public static ClaudeHost Scan(){var h=new ClaudeHost();try{foreach(var p in Process.GetProcessesByName("claude")){using(p){try{if(p.MainWindowHandle==IntPtr.Zero||p.MainModule.FileName.IndexOf("WindowsApps\\Claude_",StringComparison.OrdinalIgnoreCase)<0)continue;h.Handle=p.MainWindowHandle;h.Identity=p.Id+"/"+p.MainModule.FileName;h.StartedUtc=p.StartTime.ToUniversalTime();h.Visible=IsWindowVisible(p.MainWindowHandle)&&!IsIconic(p.MainWindowHandle);return h;}catch{}}}}catch{}return h;}
 }
 }
