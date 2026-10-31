@@ -1,6 +1,6 @@
 # Claude 小克娘 · 思考等级动态效果
 
-独立的 Windows 桌面伴随程序，根据 Claude Desktop **Code 模式当前聊天的思考档位**，显示对应的小克娘形态与动画。当前版本：**1.1.0**。
+独立的 Windows 桌面伴随程序，根据 Claude Desktop **当前本地聊天的思考档位**，显示对应的小克娘形态与动画。当前版本：**1.2.0**。
 
 ![小克娘六阶形态](docs/images/six-forms-dark.png)
 
@@ -77,11 +77,15 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\安装自启.ps1
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\test.ps1
 ```
 
-验证会构建程序，核对六张素材哈希，执行 10 项聚焦/元数据只读检查，并用 WPF 检查六种形态在三个时刻的渲染与动态像素变化。测试仅使用合成聊天数据，结果输出到忽略提交的 `verification` 目录，不读取真实聊天；不等同于所有 Claude 版本的实际兼容性验证。
+验证会构建程序，核对六张素材哈希，执行 13 项聚焦/元数据只读检查，并用 WPF 检查六种形态在三个时刻的渲染与动态像素变化。测试仅使用合成聊天数据，结果输出到忽略提交的 `verification` 目录，不读取真实聊天；不等同于所有 Claude 版本的实际兼容性验证。
 
-- `src/`：现有 v1.1.0 应用源码。
+- `src/`：现有 v1.2.0 应用源码。
 - `assets/`：六阶立绘、生成提示词与校验值。
 - `tests/`、`scripts/test.ps1`：可重复运行的验证。
 - `docs/images/`：形态展示图。
 
 本仓库不收录本机 `runtime`、备份、聊天日志、旧版压缩包或历史验收中的本机状态。
+
+## v1.2.0
+
+设置卡片默认隐藏，角色右键菜单可显示或隐藏设置，收起时同步缩小窗口。新会话聚焦后立即刷新元数据列表，增加会话扫描容量。兼容扫描 Code 和 Cowork 的本地 `local_*.json` 会话元数据。Cowork 本机暂无真实会话样本，兼容读取通过合成数据验证，尚未完成实际客户端验收。未发送的新聊天没有可读档位时显示等待，不沿用旧聊天档位。
